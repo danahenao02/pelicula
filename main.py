@@ -40,7 +40,7 @@ def cargar_peliculas():
     """
     try:
         
-        if not os.path.exists('peliculas.json'):
+        if not os.path.exists('peliculas json'):
             print(" Error: No se encontró el archivo 'peliculas.json'")
             print(" Asegúrate de que esté en la misma carpeta que main.py")
             return None
@@ -80,7 +80,7 @@ def mostrar_estadisticas_carga(peliculas):
         print(f" {genero.replace('_', ' ').title()}: {cantidad} películas")
     
     print("=" * 30)
-    print(f"📽️ Total de películas: {total_peliculas}")
+    print(f" Total de películas: {total_peliculas}")
     
    
     mejor_pelicula = None
@@ -117,4 +117,8 @@ def main():
 if __name__ == "__main__":
     main()
 
-    
+def limpiar_pantalla():
+     """ limpiar pantalla de la consola"""
+     os.system('cls' if os.name == 'nt' else 'clear')
+
+
