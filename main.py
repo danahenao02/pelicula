@@ -114,11 +114,75 @@ def main():
     
     print("\n Sistema listo para usar")
 
-if __name__ == "__main__":
-    main()
-
 def limpiar_pantalla():
      """ limpiar pantalla de la consola"""
      os.system('cls' if os.name == 'nt' else 'clear')
 
+def mostrar_header():
+    """muestra el encabezado del programa"""
+    print("=" * 60)
+    print("" * 20 + "NETFLIX CONSOLE" + "" * 20 )
+    print("=" * 60)
+
+def mostrar_menu_principal():
+        """muestra el menu principal con todas las opciones"""
+        print("que quieres hacer hoy?")
+        print("-" * 35)
+        print("1 peliculas de accion")
+        print("2 peliculas de comedia")
+        print("3 peliculas de terror")
+        print("4 peliculas de romance")
+        print("5 pelivulas de ciencia ficcion")
+        print("6 buscar pelicula especifica")
+        print("7 top 10 mejores calificadas")
+        print("8 ver mis peliculas favoritas")
+        print("9 estadisticas del sistema")
+        print("0 salir del programa")
+        print("-" * 35)
+
+def obtener_opcion_usuario():
+
+    while True:
+        try:
+            opcion = input("\n elige una opcion (0-9):").strip()
+        
+            if opcion in ['0','1','2','3','4','5','6','7','8','9']:
+                return opcion
+        
+            else:
+                print("opcion no valida. usa numeros del 0 al 9.")
+
+        except KeyboardInterrupt:
+            print("\n\¡hasta luego!")
+            sys.exit(0)
+        except Exception as e:
+            print(f"error: {e}")
+
+def pausar():
+    """pausa el programa hasta que el usuario presione enter"""
+    input("\npresiona enter para continuar...")
+
+    def main():
+        """funcion principal con bucle de menu interactivo"""
+
+        #cargar datos
+        print("no se puede consultar peliculas")
+        return
+    print("sistema cargando correctamente")
+    pausar()
+
+    #bucle principal del menu
+    while True:
+        limpiar_pantalla()
+        mostrar_header()
+        mostrar_menu_principal()
+
+        opcion = obtener_opcion_usuario
+
+        #procesar la opcion elegida
+        if opcion == "0":
+            limpiar_pantalla()
+            print("¡gracias por usar Netflix console!")
+            print("¡hasta la proxima!")
+            break
 
