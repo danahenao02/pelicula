@@ -182,51 +182,110 @@ def main():
             print("¡que disfrutes viendo peliculas!")
             print("¡hasta la proxima!")
             break
+
         elif opcion == "1":
-            print("\n has elegido la pelicula de accion")
-            print("funcion en desarrollo")
-            pausar()
-
+            procesar_seleccion_genero(peliculas, "accion", "ACCIÓN")
+            
         elif opcion == "2":
-            print("\n has elegido la pelicula de comedia")
-            print("funcion en desarrollo")
-            pausar()
-
+            procesar_seleccion_genero(peliculas, "comedia", "COMEDIA")
+            
         elif opcion == "3":
-            print("\n has elegido la pelicula de comedia")
-            print("funcion en desarrollo")
-            pausar()
-
+            procesar_seleccion_genero(peliculas, "terror", "TERROR")
+            
         elif opcion == "4":
-            print("\n has elegido la pelicula de terror")
-            print("funcion en desarrollo")
-            pausar()
-
+            procesar_seleccion_genero(peliculas, "romance", "ROMANCE")
+            
         elif opcion == "5":
-            print("\n has elegido la pelicula de ciencia")
-            print("funcion en desarrollo")
-            pausar()
+            procesar_seleccion_genero(peliculas, "ciencia_ficcion", "CIENCIA FICCIÓN")
 
         elif opcion == "6":
-            print("\n has elegido buscar pelicula")
-            print("funcion en desarrollo")
+            print("\n Has elegido: BUSCAR PELÍCULA")
+            print(" Función en desarrollo...")
             pausar()
-        
+
         elif opcion == "7":
-            print("\n has elegido top 10")
-            print("funcion en desarrollo")
+            print("\n Has elegido: TOP 10")
+            print(" Función en desarrollo...")
             pausar()
 
         elif opcion == "8":
-            print("\n has elegido mis favoritas")
-            print("funcion en desarrollo")
+            print("\n Has elegido: MIS FAVORITAS")
+            print(" Función en desarrollo...")
             pausar()
-
+            
         elif opcion == "9":
             limpiar_pantalla()
             mostrar_header()
-            mostrar_estadisticas_carga()
+            mostrar_estadisticas_carga(peliculas)
             pausar()
+            print(" PELÍCULAS DE {nombre_genero.upper}" )
+            print("=" * 60)
+    
+    lista_peliculas = peliculas['genero']
+    
+    
+    print(f"{'#':<3} {'TÍTULO':<35} {'AÑO':<6} {'RATING':<8}")
+    print("━" * 60)
+    
+    
+    for i, pelicula in enumerate(lista_peliculas, 1):
+        titulo = pelicula['titulo']
+        if len(titulo) > 32:
+            titulo = titulo[:29] + "..."
             
-if __name__ == "__main__":
-    main()
+        print(f"{i:<3} {titulo:<35} {pelicula['año']:<6} {pelicula['rating']:<7}")
+    
+    print("━" * 60)
+    print(f"{len(lista_peliculas) + 1}. ⬅ Volver al menú principal")
+    
+    return seleccionar_pelicula_genero(lista_peliculas)
+
+def seleccionar_pelicula_genero(lista_peliculas):
+    while True:
+        try:
+            print(f"\ Elige una película (1-{len(lista_peliculas)}) o {len(lista_peliculas) + 1} para volver: ", end="")
+            opcion = input().strip()
+            
+            if opcion == str(len(lista_peliculas) + 1):
+                return None  
+            
+            numero = int(opcion)
+            if 1 <= numero <= len(lista_peliculas):
+                return lista_peliculas[numero - 1]
+            else:
+                print(f" Número fuera de rango. Usa 1-{len(lista_peliculas)} o {len(lista_peliculas) + 1}")
+        
+        except ValueError:
+            print(" Por favor ingresa un número válido")
+        except KeyboardInterrupt:
+            return None
+        
+def procesar_seleccion_genero(peliculas, genero, nombre_genero):
+    while True:
+                pelicula_seleccionada = mostrar_peliculas_genero(peliculas, genero, nombre_genero)
+                if pelicula_seleccionada is None:
+                    break  #volver al menu principal
+                print(f"\n Seleccionaste: {pelicula_seleccionada['titulo']}")
+    print(" Función de detalles en desarrollo...")
+    pausar()
+
+def main():
+        print("iniciando Netflix Console. . .")
+        peliculas = cargar_peliculas()
+
+        if not peliculas:
+            print("❌no se puede continuar si ls peliculas")
+            return
+        print("✅sistema cargando correctamente")
+
+        while True:
+            limpiar_pantalla()
+            mostrar_header()
+            mostrar_menu_principal()
+
+            opcion = obtener_opcion_usuario()
+
+def mostrar_detalle_pelicula(pellicula):
+    limpiar_pantalla()
+    
+    
